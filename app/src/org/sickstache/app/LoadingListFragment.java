@@ -119,13 +119,13 @@ public abstract class LoadingListFragment<Params, Progress, Result> extends Sick
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch ( item.getItemId() ) {
-		case R.id.refreshMenuItem:
+		if(item.getItemId()== R.id.refreshMenuItem)
+		{
 			this.refresh();
-			break;
-		case R.id.searchMenuItem:
+		}
+		else if(item.getItemId() == R.id.searchMenuItem)
+		{
 			this.getActivity().onSearchRequested();
-			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

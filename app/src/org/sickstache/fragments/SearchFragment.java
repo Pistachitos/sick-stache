@@ -139,8 +139,8 @@ public class SearchFragment extends LoadingListFragment<SearchParams, Void, Sear
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch ( item.getItemId() ) {
-		case R.id.sortByRelevanceMenuItem:
+		if(item.getItemId() == R.id.sortByRelevanceMenuItem)
+		{
 			sorter = new Comparator<SearchResult>(){
 				@Override
 				public int compare(SearchResult lhs, SearchResult rhs) {
@@ -149,15 +149,21 @@ public class SearchFragment extends LoadingListFragment<SearchParams, Void, Sear
 			};
 			onPostExecute(lastResults);
 			return true;
-		case R.id.sortByTitleMenuItem:
+		}
+		else if(item.getItemId() == R.id.sortByTitleMenuItem)
+		{
 			sorter = new SearchResultByTitleComparator();
 			searchAdapter.sort(sorter);
 			return true;
-		case R.id.sortByYearMenuItem:
+		}
+		if(item.getItemId() == R.id.sortByYearMenuItem)
+		{
 			sorter = new SearchResultByYearComparator();
 			searchAdapter.sort(sorter);
 			return true;
-		case R.id.searchLanguageMenuItem:
+		}
+		if(item.getItemId() == R.id.searchLanguageMenuItem)
+		{
 			final LanguageDialog lDialog = new LanguageDialog();
 			lDialog.setTitle("Search Language");
 			lDialog.setOnListClick( new DialogInterface.OnClickListener() {
@@ -168,8 +174,9 @@ public class SearchFragment extends LoadingListFragment<SearchParams, Void, Sear
 				}
 			});
 			lDialog.show(getFragmentManager(), "language");
-			break;
-		case R.id.searchMenuItem:
+		}
+		if(item.getItemId() == R.id.searchMenuItem)
+		{
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

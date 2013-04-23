@@ -151,8 +151,8 @@ public class ShowsFragment extends LoadingListFragment<Void, Void, ArrayList<Sho
 				
 				@Override
 				public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-					switch ( item.getItemId() ) {
-					case R.id.pauseMenuItem:
+					if(item.getItemId() == R.id.pauseMenuItem)
+					{
 						final PauseDialog pDialog = new PauseDialog();
 						pDialog.setTitle("Set Pause");
 						pDialog.setOnOkClick( new OnClickListener(){
@@ -181,8 +181,9 @@ public class ShowsFragment extends LoadingListFragment<Void, Void, ArrayList<Sho
 							}} );
 						pDialog.show(getFragmentManager(), "update");
 						return true;
-					case R.id.refreshMenuItem:
-						{
+					}
+					if(item.getItemId() == R.id.refreshMenuItem)
+					{
 							final ProgressDialog dialog = ProgressDialog.show(ShowsFragment.this.getSherlockActivity(), "","Refreshing Shows. Please wait...", true);
 							dialog.setCancelable(true);
 							dialog.show();
@@ -203,37 +204,36 @@ public class ShowsFragment extends LoadingListFragment<Void, Void, ArrayList<Sho
 									}
 								}};
 								refresh.execute();
-						}
 						return true;
-					case R.id.updateMenuItem:
-						{
-							final ProgressDialog dialog = ProgressDialog.show(ShowsFragment.this.getSherlockActivity(), "","Updating Shows. Please wait...", true);
-							dialog.setCancelable(true);
-							dialog.show();
-							String[] tvdbids = new String[selected.size()];
-							for ( int i=0; i < selected.size(); i++ ) {
-								tvdbids[i] = showAdapter.getItem(selected.get(i)).id;
-							}
-							Preferences pref = Preferences.getSingleton(ShowsFragment.this.getSherlockActivity());
-							UpdateTask update = new UpdateTask(pref, tvdbids){
-								@Override
-								protected void onPostExecute(Boolean result) {
-									if ( dialog != null && dialog.isShowing() )
-										dialog.dismiss();
-									if ( error != null && getFragmentManager() != null ) {
-										ErrorDialog dialog = new ErrorDialog();
-										dialog.setMessage("Error updating show.\nERROR: "+error.getMessage());
-										dialog.show(getFragmentManager(), "updateError");
-									}
-								}};
-							update.execute();
+					}
+					if(item.getItemId() ==R.id.updateMenuItem)
+					{
+						final ProgressDialog dialog = ProgressDialog.show(ShowsFragment.this.getSherlockActivity(), "","Updating Shows. Please wait...", true);
+						dialog.setCancelable(true);
+						dialog.show();
+						String[] tvdbids = new String[selected.size()];
+						for ( int i=0; i < selected.size(); i++ ) {
+							tvdbids[i] = showAdapter.getItem(selected.get(i)).id;
 						}
+						Preferences pref = Preferences.getSingleton(ShowsFragment.this.getSherlockActivity());
+						UpdateTask update = new UpdateTask(pref, tvdbids){
+							@Override
+							protected void onPostExecute(Boolean result) {
+								if ( dialog != null && dialog.isShowing() )
+									dialog.dismiss();
+								if ( error != null && getFragmentManager() != null ) {
+									ErrorDialog dialog = new ErrorDialog();
+									dialog.setMessage("Error updating show.\nERROR: "+error.getMessage());
+									dialog.show(getFragmentManager(), "updateError");
+								}
+							}};
+						update.execute();
 						return true;
+					}
 //					case R.id.editMenuItem:
 //						// get all selected items and create the edit show activity passing all of them
 //						actionMode.finish();
 //						return true;
-					}
 					return false;
 				}
 			});

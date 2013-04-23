@@ -90,12 +90,12 @@ public class HomeActivity extends SherlockFragmentActivity implements OnSharedPr
     
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-    	switch ( item.getItemId() )
+    	if(item.getItemId() == R.id.settingsMenuItem)
     	{
-    	case R.id.settingsMenuItem:
     		Intent intent = new Intent( this, PreferencesActivity.class );
     		this.startActivityForResult(intent, PREFRENCES_ACTIVITY_REQUEST_CODE);
     		return true;
+    	}
 		// MOVED TO SETTINGS!!!!
 //    	case R.id.cacheMenuItem:
 //    		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -125,18 +125,25 @@ public class HomeActivity extends SherlockFragmentActivity implements OnSharedPr
 //    		Intent historyIntent = new Intent( this, HistoryActivity.class );
 //    		this.startActivity(historyIntent);
 //    		return true;
-    	case R.id.logMenuItem:
+    	else if(item.getItemId() == R.id.logMenuItem)
+    	{
     		Intent logIntent = new Intent( this, LogActivity.class );
     		this.startActivity(logIntent);
     		return true;
-    	case R.id.whatsNewMenuItem:
+    	}
+    	else if(item.getItemId() == R.id.whatsNewMenuItem)
+    	{
 	    	showWhatsNewDiag();
 	        return true;
-		case R.id.helpMenuItem:
+    	}
+    	else if(item.getItemId() == R.id.helpMenuItem)
+    	{
 			Intent i = new Intent(Intent.ACTION_VIEW,Uri.parse("https://github.com/Buttink/sick-stache/wiki/FAQ"));
 			startActivity(i);
 			return true;
-    	case R.id.aboutMenuItem:
+    	}
+    	else if(item.getItemId() == R.id.aboutMenuItem)
+    	{
     		Intent aboutIntent = new Intent( this, AboutActivity.class );
     		this.startActivity(aboutIntent);
     		return true;

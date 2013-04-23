@@ -19,6 +19,7 @@
  */
 package org.sickstache.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.widget.Button;

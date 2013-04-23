@@ -133,8 +133,8 @@ public class SeasonsFragment extends ExpandableLoadingListFragment<Integer,Episo
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch ( item.getItemId() ) {
-		case R.id.editShowMenuItem:
+		if(item.getItemId() == R.id.editShowMenuItem)
+		{
 			Intent intent = new Intent( this.getActivity(), EditShowActivity.class );
 			intent.putExtra("tvdbid", tvdbid);
 			intent.putExtra("show", show);
@@ -299,8 +299,8 @@ public class SeasonsFragment extends ExpandableLoadingListFragment<Integer,Episo
 				
 				@Override
 				public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-					switch ( item.getItemId() ) {
-					case R.id.setStatusMenuItem:
+					if(item.getItemId() == R.id.setStatusMenuItem)
+					{
 						final StatusDialog sDialog = new StatusDialog();
 						sDialog.setTitle("Status");
 						sDialog.setOnListClick( new OnClickListener(){
