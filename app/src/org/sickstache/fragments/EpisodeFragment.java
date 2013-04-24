@@ -15,6 +15,7 @@ import org.sickstache.dialogs.StatusDialog;
 import org.sickstache.helper.Preferences;
 import org.sickstache.task.EpisodeSearchTask;
 import org.sickstache.task.SetStatusTask;
+import org.sickstache.task.SubtitleSearchTask;
 import org.sickstache.widget.DefaultImageView;
 import org.sickstache.widget.WorkingTextView;
 
@@ -40,6 +41,7 @@ public class EpisodeFragment extends LoadingFragment<String, Void, Episode> {
 	public TextView descirption;
 	
 	public WorkingTextView search;
+	public WorkingTextView searchSubtitle;
 	public WorkingTextView setStatusView;
 	
 	@Override
@@ -74,6 +76,7 @@ public class EpisodeFragment extends LoadingFragment<String, Void, Episode> {
 		if ( this.descriptionText != null )
 			this.descirption.setText(this.descriptionText);
 		this.search = (WorkingTextView)view.findViewById(R.id.searchWorkingTextView);
+		this.searchSubtitle = (WorkingTextView)view.findViewById(R.id.searchSubtitleWorkingTextView);
 		this.statusView = (TextView)view.findViewById(R.id.statusTextView);
 		if ( status != null )
 			this.setStatusEnum(status);
@@ -101,6 +104,30 @@ public class EpisodeFragment extends LoadingFragment<String, Void, Episode> {
 						if ( error != null && getFragmentManager() != null ) {
 							ErrorDialog dialog = new ErrorDialog();
 							dialog.setMessage("Error searching for show.\nERROR: "+error.getMessage());
+							dialog.show(getFragmentManager(), "searchError");
+						}
+					}};
+				task.execute();
+			}
+		});
+		
+		this.searchSubtitle.text.setText("Search for Subtitles");
+		this.searchSubtitle.text.setOnClickListener( new View.OnClickListener() {
+			public void onClick(View v) {
+				searchSubtitle.setIsWorking(true);
+				//searchSubtitle.text.setText("Searching for Subtitles");
+				Preferences pref = Preferences.getSingleton(v.getContext());
+				SubtitleSearchTask task = new SubtitleSearchTask(pref,tvdbid,season,episode){
+					@Override
+					protected void onPostExecute(Boolean result) {
+						if ( result != null && result == true ) {
+							searchSubtitle.setIsSuccessful(true);
+						} else {
+							searchSubtitle.setIsSuccessful(false);
+						}
+						if ( error != null && getFragmentManager() != null ) {
+							ErrorDialog dialog = new ErrorDialog();
+							dialog.setMessage("Error searching for subtitles.\nERROR: "+error.getMessage());
 							dialog.show(getFragmentManager(), "searchError");
 						}
 					}};

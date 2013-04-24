@@ -5,7 +5,7 @@
         <EditTextPreference
             android:title="Host or IP address"
             android:summary="The host name or ip address of your SickBeard server."
-            android:defaultValue="192.168.0.101"
+            android:defaultValue=""
             android:key="host"
             android:inputType="textUri" />
         <EditTextPreference

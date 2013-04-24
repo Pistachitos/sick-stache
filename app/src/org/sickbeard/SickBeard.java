@@ -193,6 +193,18 @@ public class SickBeard {
 		return this.<Object>commandSuccessful( builder.toString(), new TypeToken<JsonResponse<Object>>(){}.getType() );
 	}
 	
+	public Boolean subtitleSearch(String tvdbid, String season, String episode) throws Exception 
+	{
+		StringBuilder builder = new StringBuilder("episode.subtitlesearch");
+		builder.append("&tvdbid=");
+		builder.append(tvdbid);
+		builder.append("&season=");
+		builder.append(season);
+		builder.append("&episode=");
+		builder.append(episode);
+		return this.<Object>commandSuccessful( builder.toString(), new TypeToken<JsonResponse<Object>>(){}.getType() );
+	}
+	
 	public boolean episodeSetStatus( String tvdbid, String season, String episode, StatusEnum status ) throws Exception
 	{
 		StringBuilder builder = new StringBuilder("episode.setstatus");

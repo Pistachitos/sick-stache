@@ -181,6 +181,11 @@
 	            android:layout_height="wrap_content" />
 		    
 		    <org.sickstache.widget.WorkingTextView
+	            android:id="@+id/searchSubtitleWorkingTextView"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content" />
+		    
+		    <org.sickstache.widget.WorkingTextView
 	            android:id="@+id/setStatusWorkingTextView"
 	            android:layout_width="fill_parent"
 	            android:layout_height="wrap_content" />
