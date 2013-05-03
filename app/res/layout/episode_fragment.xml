@@ -104,12 +104,30 @@
 				android:layout_toRightOf="@+id/textView4"
 				android:text="Unknown"
 				style="@style/ShowLabel" />
+			
+			<TextView
+				android:id="@+id/textViewSubs"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/statusTextView"
+				android:layout_alignParentLeft="true"
+				android:text="Subtitles: "
+				style="@style/ShowTitle" />
+	
+			<TextView
+				android:id="@+id/subtitlesTextView"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/statusTextView"
+				android:layout_toRightOf="@+id/textViewSubs"
+				android:text="none"
+				style="@style/ShowLabel" />
 	
 			<TextView
 				android:id="@+id/textView5"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/statusTextView"
+				android:layout_below="@+id/subtitlesTextView"
 				android:layout_alignParentLeft="true"
 				android:text="Name: "
 				style="@style/ShowTitle" />
@@ -118,7 +136,7 @@
 				android:id="@+id/nameTextView"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_below="@+id/statusTextView"
+				android:layout_below="@+id/subtitlesTextView"
 				android:layout_toRightOf="@+id/textView5"
 				android:text="Unknown"
 				style="@style/ShowLabel" />

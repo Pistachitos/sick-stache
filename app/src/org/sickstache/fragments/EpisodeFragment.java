@@ -26,6 +26,7 @@ public class EpisodeFragment extends LoadingFragment<String, Void, Episode> {
 	public String season;
 	public String episode;
 	public StatusEnum status = null;
+	public String subtitles = null;
 	public String airbydateText = null;
 	public String nameText = null;
 	public String descriptionText = null;
@@ -35,10 +36,11 @@ public class EpisodeFragment extends LoadingFragment<String, Void, Episode> {
 	public TextView showView;
 	public TextView seasonView;
 	public TextView episodeView;
+	public TextView subtitlesView;
 	public TextView airbydate;
 	public TextView statusView;
 	public TextView name;
-	public TextView descirption;
+	public TextView description;
 	
 	public WorkingTextView search;
 	public WorkingTextView searchSubtitle;
@@ -64,6 +66,7 @@ public class EpisodeFragment extends LoadingFragment<String, Void, Episode> {
 		super.onViewCreated(view, savedInstanceState);
 		this.showImage = (DefaultImageView)view.findViewById(R.id.showImage);
 		this.showView = (TextView)view.findViewById(R.id.show);
+		
 		this.seasonView = (TextView)view.findViewById(R.id.seasonTextView);
 		this.episodeView = (TextView)view.findViewById(R.id.episodeTextView);
 		this.airbydate = (TextView)view.findViewById(R.id.airbydateTextView);
@@ -72,14 +75,19 @@ public class EpisodeFragment extends LoadingFragment<String, Void, Episode> {
 		this.name = (TextView)view.findViewById(R.id.nameTextView);
 		if ( this.nameText != null )
 			this.name.setText(this.nameText);
-		this.descirption = (TextView)view.findViewById(R.id.descriptionTextView);
+		this.description = (TextView)view.findViewById(R.id.descriptionTextView);
 		if ( this.descriptionText != null )
-			this.descirption.setText(this.descriptionText);
+			this.description.setText(this.descriptionText);
 		this.search = (WorkingTextView)view.findViewById(R.id.searchWorkingTextView);
 		this.searchSubtitle = (WorkingTextView)view.findViewById(R.id.searchSubtitleWorkingTextView);
 		this.statusView = (TextView)view.findViewById(R.id.statusTextView);
 		if ( status != null )
 			this.setStatusEnum(status);
+		
+		this.subtitlesView = (TextView)view.findViewById(R.id.subtitlesTextView);
+		if ( subtitles != null )
+			this.subtitlesView.setText(this.subtitles);
+		
 		this.setStatusView = (WorkingTextView)view.findViewById(R.id.setStatusWorkingTextView);
 		
 		this.showView.setText(this.show);
@@ -214,9 +222,11 @@ public class EpisodeFragment extends LoadingFragment<String, Void, Episode> {
 		airbydateText = result.airdate;
 		nameText = result.name;
 		descriptionText = result.description;
+		subtitles = result.subtitles;
 		airbydate.setText(airbydateText);
 		name.setText(nameText);
-		descirption.setText(descriptionText);
+		description.setText(descriptionText);
+		subtitlesView.setText(subtitles);
 		setStatusEnum(result.status);
 	}
 }

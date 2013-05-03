@@ -88,6 +88,7 @@ public class Episode {
 	public String location;
 	public String name;
 	public String quality;
+	public String subtitles;
 	public StatusEnum status;
 
 	public Episode( EpisodeJson json ) {
@@ -97,6 +98,7 @@ public class Episode {
 		location = json.location;
 		name = json.name;
 		quality = json.quality;
+		subtitles = json.subtitles;
 		status = StatusEnum.fromJson(json.status);
 	}
 }

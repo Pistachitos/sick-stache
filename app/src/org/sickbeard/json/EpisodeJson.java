@@ -26,5 +26,6 @@ public class EpisodeJson {
 	public String location;
 	public String name;
 	public String quality;
+	public String subtitles;
 	public String status;
 }
